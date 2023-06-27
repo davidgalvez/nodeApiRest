@@ -6,6 +6,10 @@ const app = express()
 
 const port=process.env.PORT || 3000
 
+/**Section to call routes */
+// localhost/api/***
+app.use("/api",require("./routes"));
+
 app.listen(port,()=>{
     console.log(`The application is ready in the following route: http://localhost:${port}`)
 })
