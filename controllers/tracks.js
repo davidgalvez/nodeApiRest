@@ -1,5 +1,7 @@
 const {tracksModel} = require('../models')
 const mongoose = require('mongoose'); 
+const { handleError, handleHttpError } = require('../utils/handleError');
+const { matchedData } = require('express-validator');
 
 /**
  * Get list from database
@@ -7,8 +9,13 @@ const mongoose = require('mongoose');
  * @param {*} res 
  */
 const getItems = async (req,res)=>{
-    const data=await tracksModel.find({});
-    res.send({data})
+    try{
+        const data=await tracksModel.find({});
+        res.send({data})
+    }catch(e){
+        handleHttpError(res,"ERROR_GET_ITEMS")
+    }
+    
 };
 
 /**
@@ -26,11 +33,14 @@ const getItem = (req,res)=>{
  * @param {*} res 
  */
 const createItem = async (req,res)=>{
-    const {body} = req
-    console.log(body)
-    const parseBody = {...body, mediaId: new mongoose.Types.ObjectId(body.mediaId)}
-    const data= await tracksModel.create(parseBody)
-    res.send({data}) 
+    try{
+        const body = matchedData(req)       
+        const data= await tracksModel.create(body)
+        res.send({data})         
+    }catch(e){        
+        handleHttpError(res,"ERROR_CREATE_ITEMS")
+    }
+    
 };
 
 /**

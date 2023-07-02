@@ -11,7 +11,7 @@ const customHeader = (req, res, next) =>{
         res.status(403)
         res.send({error:"ERROR EN EL CUSTOM HEADER"})
     }
-    console.log(req.headers)
+    //console.log(req.headers)
     next()
 }
 
