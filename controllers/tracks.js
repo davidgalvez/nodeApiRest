@@ -14,8 +14,7 @@ const getItems = async (req,res)=>{
         res.send({data})
     }catch(e){
         handleHttpError(res,"ERROR_GET_ITEMS")
-    }
-    
+    }   
 };
 
 /**
