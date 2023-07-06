@@ -76,7 +76,7 @@ const deleteItem = async (req,res)=>{
         const body = matchedData(req)
         const {id} = body
         console.log("idTrack:",id)
-        const data=await tracksModel.deleteOne({_id:id});
+        const data=await tracksModel.delete({_id:id});
         res.send({data})
     }catch(e){        
         handleHttpError(res,"ERROR_DELETE_ITEM")
