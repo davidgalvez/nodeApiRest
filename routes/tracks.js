@@ -2,12 +2,13 @@ const express =require("express");
 const { getItem, getItems, createItem, updateItem, deleteItem } = require("../controllers/tracks");
 const { validatorCreateItem, validatorGetItem } = require("../validators/tracks");
 const customHeader = require("../middleware/customHeader");
+const authMiddleware =require("../middleware/session")
 const router= express.Router();
 
 /**
  * List items
  */
-router.get("/",getItems)
+router.get("/",authMiddleware,getItems)
 
 /**
  * Get item details
