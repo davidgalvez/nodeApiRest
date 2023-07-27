@@ -2,7 +2,9 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 const dbConnect = require("./config/mongo")
+const {bdConnectMysql} = require("./config/mysql")
 const app = express()
+const ENGINE_DB = process.env.ENGINE_DB 
 
 app.use(cors())
 app.use(express.json())
@@ -18,4 +20,8 @@ app.listen(port,()=>{
     console.log(`The application is ready in the following route: http://localhost:${port}`)
 })
 
-dbConnect()
+if(ENGINE_DB =='nosql'){
+    dbConnect() 
+}else {
+    bdConnectMysql()
+}
