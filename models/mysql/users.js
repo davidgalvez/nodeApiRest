@@ -29,4 +29,14 @@ const User = sequelize.define(
 
 )
 
+/**
+ * Custom model methods
+ */
+
+User.findOneByEmail = function (email){
+    return User.findOne({where:{email:email}})
+} 
+User.findOneByQuery = function(query){
+    return User.findOne({where:query})
+}
 module.exports = User

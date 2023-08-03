@@ -46,5 +46,9 @@ const TracksScheme = new mongoose.Schema(
   }
 );
 
+TracksScheme.statics.findAllData = function (){
+  return this.find({})
+}
+
 TracksScheme.plugin(mongooseDelete,{overrideMethods:'all'})
 module.exports = mongoose.model("tracks",TracksScheme)

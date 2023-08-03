@@ -37,4 +37,8 @@ const Tracks = sequelize.define(
     }
 )
 
+Tracks.findAllData = function(){
+    return this.findAll();
+}
+
 module.exports = Tracks

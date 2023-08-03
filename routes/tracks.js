@@ -19,7 +19,7 @@ router.get("/:id",validatorGetItem,getItem)
 /**
  * Create item
  */
-router.post("/",authMiddleware,checkRol(["admin"]),validatorCreateItem,customHeader,createItem)
+router.post("/",authMiddleware,checkRol(["admin","user"]),validatorCreateItem,customHeader,createItem)
 
 /**
  * Update item

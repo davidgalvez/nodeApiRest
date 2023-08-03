@@ -11,7 +11,7 @@ const { matchedData } = require('express-validator');
 const getItems = async (req,res)=>{
     try{
         const user =req.user
-        const data=await tracksModel.find({});
+        const data=await tracksModel.findAllData();
         //console.log(user)
         res.send({data, user})
     }catch(e){

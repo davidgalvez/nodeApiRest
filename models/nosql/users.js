@@ -25,5 +25,12 @@ const userSheme = new mongoose.Schema(
     }
 )
 
+userSheme.statics.findOneByEmail = function (email){
+    return this.findOne({email}).select('password name role email')
+}
+userSheme.statics.findOneByQuery = function (query){
+    return this.findOne(query)
+}
+
 userSheme.plugin(mongooseDelete,{overrideMethods:'all'})
 module.exports = mongoose.model("users",userSheme)
